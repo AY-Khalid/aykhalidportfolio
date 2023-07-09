@@ -570,6 +570,7 @@ button:hover{
 
 .skill-info img{
     width: 100%;
+    z-index: 99;
 }
 
 footer{
