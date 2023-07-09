@@ -1,0 +1,654 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    text-decoration: none;
+    outline: none;
+}
+:root{
+    --bg-color: #081B29;
+    --cd-color: #112e29;
+    --txt-color: #fffef7;
+    --tr-color: rgb(172, 2, 67);
+    --sc-color: rgb(255, 242, 58);
+}
+
+body{
+    background-color: var(--bg-color);
+ 
+}
+
+/* >>>>>>>>header design>>>>>>>> */
+
+header{
+    display: flex;
+   justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+ width: 100%;
+}
+
+.header{
+    padding: 0 10px;
+    padding-left: 20px;
+}
+
+.header img{
+    width: 70px;
+    height: 60px;
+}
+
+.bx-menu{
+    color: var(--txt-color);
+    font-size: 36px;
+    cursor: pointer;
+    display: none;
+}
+
+nav {
+    display: inline-flex;
+    padding: 10px;
+}
+nav ul{
+    margin: 10px;
+}
+
+nav ul a{
+    color: var(--sc-color);
+    font-size: 16px;
+    font-weight: 600;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: .5s ease;
+}
+
+nav ul a:hover{
+    color: var(--txt-color);
+}
+
+
+
+
+/* >>>>>>>>>Design of the intro section>>>>>>> */
+
+
+section{
+    height: 100vh;
+    padding: 100px;
+}
+
+.intro{
+    display: flex;
+    align-items: center;
+   /* pointer-events: none; */
+   position: fixed;
+   overflow: hidden;
+}
+
+
+.intro img{
+    height: 600px;
+    width: 560px;
+    padding: 40px;
+    animation: bounceingMain 5s ease-in-out infinite;
+}
+
+
+@keyframes bounceingMain{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: scale(1.03);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.intro-info{
+    justify-self: flex-end;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-left: 100px;
+    align-self: center;
+    color: var(--txt-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-info h1{
+    font-size: 52px;
+   line-height: 60px;
+}
+
+.intro-info h2 {
+font-size: 40px
+}
+
+.intro-info h3{
+    line-height: 52px;
+    font-size: 40px;
+}
+
+span{
+    color: var(--sc-color);
+}
+
+.intro-info p{
+    font-size: 20px;
+    line-height: 20px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+
+/* ///// social icons /////// */
+
+.social-container{
+    display: flex;
+   text-align: center;
+}
+
+.social{
+    padding: 10px 0;
+}
+
+.social p{
+    font-size: 10px;
+}
+
+.social a{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: var(--tr-color);
+    text-align: center;
+    transition: 300ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social a i{
+    color: var(--txt-color);
+    font-size: 32px;
+}
+
+
+.social a:hover{
+    border: 2px solid var(--tr-color);
+    background-color: transparent;
+    text-align: center;
+}
+
+/* ///////end of social ////// */
+
+button{
+    width: 150px;
+    padding: 10px;
+    margin: 40px 0;
+    border-radius: 20px;
+    background-color: var(--sc-color);
+    cursor: pointer;
+    animation: animateBtn 6s ease infinite;
+    transition: 500ms ease;
+}
+
+@keyframes animateBtn {
+    0%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(10px);
+    }
+    0%{
+        transform: translateX(0);
+    }
+}
+
+button a{
+    font-weight: 600;
+    color: var(--bg-color);
+}
+
+button:hover{
+    box-shadow: 1px 1px var(--sc-color);
+    animation-play-state: paused;
+}
+
+
+/* >>>>>>>>About Section Design>>>>>>>> */
+
+.about_video{
+    max-height: 75vh;
+    width: 80%;
+}
+.about{
+    color: var(--txt-color);
+    background-image: url(images/mybgpic1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    position: absolute;
+    top: 100%;
+    background-color: var(--bg-color);
+}
+
+/* //////// Begining of stars animation ///////// */
+.star{
+    position: absolute;
+}
+.star:hover{
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+
+
+@keyframes animateStars {
+    0%{
+        transform: translate(500%, 500%);
+    }
+    100%{
+        transform: translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y)));
+    }
+}
+
+.star1{
+    top: 10%;
+    width: 20px;
+    height: 20px;
+    animation: animateStar1 10s infinite alternate-reverse;
+}
+
+@keyframes animateStar1 {
+    0%{
+        transform: translate(-100%, -100%);
+    }
+    100%{
+        transform: translate(calc(50% + var(--random-x)), calc(50% + var(--random-y)));
+    }
+}
+
+.star2{
+    top: 10%;
+    right: 10%;
+    width: 40px;
+    height: 40px;
+    animation: animateStar2 7s infinite alternate-reverse ease;
+}
+
+@keyframes animateStar2 {
+    0%{
+        transform: translate(100%, 100%);
+    }
+    100%{
+        transform: translate(calc(50% + var(--random-x)), calc(50% + var(--random-y)));
+    }
+}
+
+
+.star3{
+    bottom: 10%;
+    right: 10%;
+    width: 20px;
+    height: 20px;
+    animation: animateStar3 5s infinite alternate-reverse ease-in;
+}
+
+
+@keyframes animateStar3 {
+    0%{
+        transform: translate(-200%, -200%);
+    }
+    100%{
+        transform: translate(calc(50% + var(--random-x)), calc(50% + var(--random-y)));
+    }
+}
+
+
+.star4{
+    top: 30%;
+    right: 50%;
+    width: 30px;
+    height: 30px;
+    animation: animateStar4 8s infinite alternate-reverse ease-out;
+}
+
+@keyframes animateStar4 {
+    0%{
+        transform: translate(-100%, -300%);
+    }
+    100%{
+        transform: translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y)));
+    }
+}
+
+
+.star5{
+    bottom: 10%;
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    animation: animateStar5 12s infinite alternate-reverse ease-in-out;
+}
+
+
+@keyframes animateStar5 {
+    0%{
+        transform: translate(200%, 200%);
+    }
+    100%{
+        transform: translate(calc(50% + var(--random-x)), calc(50% + var(--random-y)));
+    }
+}
+
+
+.star6{
+    bottom: 30%;
+    right: 70%;
+    width: 40px;
+    height: 40px;
+    animation: animateStar6 15s infinite alternate-reverse ease;
+}
+
+@keyframes animateStar6 {
+    0%{
+        transform: translate(-50%, -50%);
+    }
+    100%{
+        transform: translate(calc(-50% + var(--random-x)), calc(-50% + var(--random-y)));
+    }
+}
+
+/* //////// End of stars animation ///////// */
+
+.about h1{
+    font-size: 52px;
+}
+
+.abount_content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.about_info{
+    width: 75%;
+    align-self: center;
+    justify-self: end;
+}
+
+.about_info h2{
+    font-size: 32px;
+    color: var(--tr-color);
+}
+
+.about_info p{
+    font-size: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.about_info a{
+    border: 1px solid var(--sc-color);
+    border-radius: 8px;
+    padding: 8px;
+    color: var(--txt-color);
+}
+
+#fixed-section{
+    width: 100%;
+    transition: position 500ms ease-in-out;
+}
+
+
+/* >>>>>>>>>>> Project Section Design >>>>>>>>> */
+
+.projects{
+    position: absolute;
+    top: 200%;
+    background-color: var(--bg-color);
+    background-color: var(--bg-color);
+    width: 100%;
+    height: 150vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects h1{
+    font-size: 52px;
+    text-align: center;
+    padding-bottom: 50px;
+    color: var(--txt-color);
+}
+
+.project-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.project-contents{
+    border-radius: 16px;
+    box-shadow: 1px 1px 3px var(--tr-color);
+    position: relative;
+    background-color: var(--cd-color);
+    overflow: hidden;
+   
+}
+
+
+
+.project-contents img{
+    width: 100%;
+    height: 100%;
+    transition: 500ms ease;
+}
+
+.project-contents:hover img{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.project-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgb(0,15,150,.1), var(--tr-color)) ;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border-radius: 16px;
+    transform: translateX(100%);
+    transition: 500ms ease;
+}
+
+.project-contents:hover .project-info{
+    transform: translateX(0);
+
+}
+
+.project-info h3{
+    font-size: 40px;
+    color: var(--txt-color);
+}
+
+
+.project-info p{
+    font-size: 16px;
+    color: var(--txt-color);
+}
+
+.project-info a{
+    border: 2px solid var(--sc-color);
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--sc-color);
+    margin-top: 20px;
+    width: 50%;
+    align-self: center;
+    color: var(--bg-color);
+    transition: .5s ease-in-out;
+    font-weight: 600;
+}
+
+.project-info a:hover{
+    background-color: transparent;
+    color: var(--sc-color);
+}
+
+
+.projects button{
+    align-self: center;
+}
+
+.projects button a{
+    font-weight: 600;
+    color: var(--bg-color);
+    font-size: 16px;
+}
+
+
+/* >>>>>>>>> Skills section Design >>>>>>> */
+
+.skills{
+    position: absolute;
+    top: 350%;
+    background-color: var(--bg-color);
+    width: 100%;
+    padding-top: 50px;
+}
+
+.skills h1{
+    text-align: center;
+    font-size: 52px;
+    color: var(--txt-color);
+}
+
+.skills-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.skills-content{
+    margin-top: 20px;
+    padding: 10px;
+    transition: 600ms ease-in-out;
+}
+
+.skills-content:hover{
+    box-shadow: 1px 1px 3px var(--tr-color);
+    transform: scale(1.2);
+    background-color: var(--bg-color);
+}
+
+.skills-content h3{
+    font-size: 32px;
+    color: var(--tr-color);
+}
+
+.skill-info{
+    margin:20px 0;
+}
+
+.skill-info h4{
+    color: var(--txt-color);
+}
+
+
+.skill-info img{
+    width: 100%;
+}
+
+footer{
+    color: var(--txt-color);
+    padding: 20px;
+    position: absolute;
+    top: 450%;
+    background-color: var(--bg-color);
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+/* >>>>>>>> Responsiveness>>>>>>> */
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .header, footer{
+        padding: 2rem 3%;
+    }
+
+    section{
+        padding: 10rem 3% 2rem;
+    }
+    .intro{
+        padding-top: 100px;
+    }
+
+    .intro-info{
+        width: 100%;
+        padding-left: 20px;
+        flex-wrap:nowrap;
+        width: 50%;
+       justify-self: flex-start;
+    }
+
+    .intro-info h1{
+        font-size: 48px;
+    } .intro-info h2 {
+            font-size: 32px;
+    }
+     .intro-info h3, .skills-content h3{
+        font-size: 24px;
+    }
+
+    .intro-info p{
+        font-size: 14px;
+    }
+
+    footer p{
+        font-size: 16px;
+        padding: 2rem 3%;
+    }
+}
+
+@media (max-width: 768px ) {
+    .bx-menu{
+        display: block;
+    } 
+    
+    header{
+        background-color: var(--bg-color);
+    }
+    
+    nav{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 10px 3%;
+        background-color: var(--bg-color);
+        box-shadow: 0 .5rem 1rem var(--cd-color);
+    }
+}
