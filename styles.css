@@ -552,6 +552,7 @@ button:hover{
     box-shadow: 1px 1px 3px var(--tr-color);
     transform: scale(1.2);
     background-color: var(--bg-color);
+    z-index: 95;
 }
 
 .skills-content h3{
