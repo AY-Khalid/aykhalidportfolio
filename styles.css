@@ -88,7 +88,7 @@ section{
 
 
 .intro img{
-    height: 600px;
+    height: 560px;
     width: 560px;
     padding: 40px;
     animation: bounceingMain 5s ease-in-out infinite;
@@ -589,12 +589,13 @@ footer{
 
 /* >>>>>>>> Responsiveness>>>>>>> */
 
-@media (max-width: 1200px) {
-    html {
+@media only screen and (max-width: 1200px) {
+    html, body {
         font-size: 55%;
     }
 
 }
+
 
 @media (max-width: 991px) {
     .header, footer{
@@ -635,22 +636,78 @@ footer{
     }
 }
 
-@media (max-width: 768px ) {
-    .bx-menu{
-        display: block;
-    } 
-    
-    header{
-        background-color: var(--bg-color);
+@media only screen and (max-width: 884px ) {
+    section{
+        max-width: 100%;
     }
-    
-    nav{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 10px 3%;
-        background-color: var(--bg-color);
-        box-shadow: 0 .5rem 1rem var(--cd-color);
+
+    section img{
+        max-width: 100%;
+        max-height: 80vh;
     }
+    section div{
+        max-width: 100%;
+        max-height: 80vh;
+    }
+   .skills{
+    top: 324%;
+   }
+
+   footer{
+    flex-direction: column-reverse;
+    top: 400%;
+    align-items: center;
+   }
+
+}
+
+@media only screen and (max-width: 766px) {
+
+   .intro{
+   flex-direction: column;
+   }
+
+  section, header, footer{
+    padding: 8px;
+  }
+  
+  .intro{
+   position: absolute;
+   height: auto;
+    top: 0;
+    
+  }
+
+  header{
+    flex-direction: column;
+    justify-content: start;
+    position: absolute;
+    top: 0;
+  }
+  footer{
+    width: 100%;
+    top: 470%;
+  }
+  .about{
+    /* display: none; */
+    top: 170%;
+  }
+
+  .projects{
+    top: 270%;
+  }
+
+  .skills{
+    top: 370%;
+  }
+
+  .intro img{
+    height: 80vh;
+    width: 80vw;
+  }
+  .intro div{
+    text-align: center;
+    align-items: center;
+  }
+  
 }
