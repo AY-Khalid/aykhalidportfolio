@@ -32,3 +32,18 @@ const typed = new Typed(".aboutme-text", {
     backDelay: 1000,
     loop: true
 });
+
+// toggle nav bar
+let bxMenu = document.querySelector(".bx-menu");
+let navBar = document.querySelector(".navbar");
+
+
+bxMenu.onclick = () => {
+    bxMenu.classList.toggle("bx-x")
+    navBar.classList.toggle("showMe")
+}
+
+window.onscroll = () => {
+    bxMenu.classList.remove("bx-x");
+    navBar.classList.remove("active");
+}

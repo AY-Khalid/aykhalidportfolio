@@ -25,4 +25,133 @@
     .skills-content h3{
         font-size: 2vw;
     }
+    .projects button{
+        margin-top: 60px;
+    }
+}
+
+@media only screen and (max-width: 772px) {
+        /* header design */
+
+       .bx-menu{
+        visibility: visible;
+       }
+
+       nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--second-bg-color);
+        display: block;
+       }
+       .navbar {
+        display: none;
+       }
+       .navbar.showMe{
+        display: block;
+       }
+       
+    
+    
+    /* intro section */
+
+    .intro{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-items: center;
+    }
+
+    .intro img{
+        margin-top: 20rem;
+        width: 50vw;
+    }
+
+    .intro h1 {
+        margin-bottom: 20px;
+    }
+
+    .intro .intro-info{
+        align-self: center;
+        justify-self: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .intro-info h4{
+        margin-top: 20px;
+    }
+    .social-container{
+        justify-content: center;
+       }
+    button, .button{
+        width: 40vw;
+    }
+
+    a{
+        font-size: 3vw;
+    }
+
+    /* about section */
+    .abount_content{
+        grid-template-columns: 1fr;
+    }
+
+    .about{
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .about video{
+        width: 75vw;
+    }
+
+    .about_info h2{
+       font-size: 6vw;
+       font-weight: bolder;
+    }
+
+    /* project section */
+
+    .projects{
+        padding-bottom: 80px;
+    }
+
+    .project-container{
+        grid-template-columns: 1fr;
+    }
+
+    .projects h1{
+        font-size: 8vw;
+    }
+
+    .projects button{
+        position: absolute;
+        bottom: 0;
+        left: 26%;
+        margin: 20px;
+    }
+
+
+    /* skills design */
+    .skills{
+        padding: 24px;
+    }
+    .skills-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .skill-info{
+        width: 75vw;
+    }
+    
+    .skills-content h3{
+        font-size:6vw;
+    }
+
+    /* footer design */
+    footer{
+        flex-direction: column-reverse;
+        line-height: 40px;
+    }
 }
