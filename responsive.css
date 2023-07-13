@@ -1,0 +1,28 @@
+@media only screen and (max-width: 1080px) {
+                html{
+                    font-size: 32%;
+                }
+}
+
+@media only screen and (max-width: 990px) {
+    .intro, .projects, .skills, .about{
+        padding: 24px;
+    }
+
+    .intro-info{
+        align-self: flex-end;
+        width: 45vw;
+        height: 75vh;
+    }
+
+    .skills-content:nth-child(1), .skills-content:nth-child(2), .skills-content:nth-child(3){
+        animation: none;
+    }
+    .skills-content:nth-child(1):hover, .skills-content:nth-child(2):hover, .skills-content:nth-child(3):hover{
+        transform: scale(1.01);
+        border-radius: 0 30px;
+    }
+    .skills-content h3{
+        font-size: 2vw;
+    }
+}
