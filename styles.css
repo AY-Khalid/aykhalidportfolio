@@ -184,6 +184,8 @@ Design of the intro section */
 
 .intro-info{
     align-self: flex-end;
+    width: 35vw;
+    height: 75vh;
 }
 
 .social-container{
