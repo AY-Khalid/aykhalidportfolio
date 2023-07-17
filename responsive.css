@@ -32,7 +32,9 @@
 
 @media only screen and (max-width: 772px) {
         /* header design */
-
+        html{
+            font-size: 20%;
+        }  
        .bx-menu{
         visibility: visible;
        }
@@ -48,7 +50,7 @@
        .navbar {
         display: none;
        }
-       .navbar.showMe{
+       .showMe{
         display: block;
        }
        
@@ -57,7 +59,6 @@
     /* intro section */
 
     .intro{
-        display: flex;
         flex-direction: column;
         align-content: center;
         justify-items: center;
@@ -70,6 +71,7 @@
 
     .intro h1 {
         margin-bottom: 20px;
+        font-weight: bolder;
     }
 
     .intro .intro-info{
@@ -79,6 +81,14 @@
         width: 100%;
     }
 
+    .intro-info h2{
+        font-size: 24px;
+        font-weight: bolder;
+    }
+
+    .intro-info h3{
+        font-size: 24px;
+    }
     .intro-info h4{
         margin-top: 20px;
     }

@@ -9,6 +9,7 @@
     outline: none;
 }
 
+
 html{
     font-size: 72%;
     color: var(--txt-color);
@@ -18,6 +19,7 @@ html{
 a{
     font-size: 2vw;
 }
+
 
 .large-font{
     font-size: 52px;
