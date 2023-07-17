@@ -30,8 +30,16 @@
     }
 }
 
-@media only screen and (max-width: 772px) {
+@media only screen and (min-width: 250px) and (max-width: 772px) {
         /* header design */
+        body{
+            padding: 0;
+            margin: 50px;
+            box-sizing: content-box;
+            
+        }
+
+
         html{
             font-size: 20%;
         }  
