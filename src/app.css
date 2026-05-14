@@ -1,0 +1,316 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+	--cream:        #F1E8D5;
+	--cream-deep:   #E8DCC4;
+	--cream-soft:   #F7EFE0;
+	--ink:          #1A1A1A;
+	--ink-soft:     #2A2A2A;
+
+	/* Neumorphism. Dual light from top-left. */
+	--neo-bg:        #F1E8D5;
+	--neo-light:     #FFFFFF;          /* highlight */
+	--neo-shadow:    #C9BFA8;          /* shadow */
+	--neo-light-a:   rgba(255,255,255,0.85);
+	--neo-shadow-a:  rgba(180,165,135,0.55);
+
+	color-scheme: light;
+}
+
+.dark {
+	--cream:        #F1E8D5;     /* keep splash cream-anchored even in dark */
+	--neo-bg:       #1F2126;
+	--neo-light:    #2A2D34;
+	--neo-shadow:   #0D0E11;
+	--neo-light-a:  rgba(58,62,72,0.55);
+	--neo-shadow-a: rgba(0,0,0,0.55);
+	color-scheme: dark;
+}
+
+html, body { height: 100%; }
+body {
+	font-family: 'Inter', system-ui, sans-serif;
+	background: var(--neo-bg);
+	color: var(--ink);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+}
+.dark body { color: #F1E8D5; }
+
+::selection { background: #1A1A1A; color: #F1E8D5; }
+.dark ::selection { background: #F1E8D5; color: #1A1A1A; }
+
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+	border-radius: 6px;
+}
+
+.font-display {
+	font-family: 'Archivo Black', 'Anton', sans-serif;
+	letter-spacing: -0.02em;
+}
+
+/* Vertical text utility for CONNECTING column */
+.vtext {
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	text-orientation: mixed;
+}
+
+/* ============================================================
+   Neumorphism primitives
+   ============================================================ */
+
+/* Raised surface, sits on top of the cream */
+.neo-raised {
+	background: var(--neo-bg);
+	box-shadow:
+		8px 8px 20px var(--neo-shadow-a),
+		-8px -8px 20px var(--neo-light-a);
+	transition: box-shadow .35s cubic-bezier(.2,.7,.2,1), transform .35s;
+}
+.neo-raised:hover {
+	box-shadow:
+		12px 12px 28px var(--neo-shadow-a),
+		-12px -12px 28px var(--neo-light-a);
+}
+
+.neo-raised-lg {
+	background: var(--neo-bg);
+	box-shadow:
+		14px 14px 34px var(--neo-shadow-a),
+		-14px -14px 34px var(--neo-light-a);
+}
+
+.neo-raised-sm {
+	background: var(--neo-bg);
+	box-shadow:
+		4px 4px 10px var(--neo-shadow-a),
+		-4px -4px 10px var(--neo-light-a);
+}
+
+/* Inset / pressed surface, looks carved into the cream */
+.neo-inset {
+	background: var(--neo-bg);
+	box-shadow:
+		inset 6px 6px 14px var(--neo-shadow-a),
+		inset -6px -6px 14px var(--neo-light-a);
+}
+.neo-inset-sm {
+	background: var(--neo-bg);
+	box-shadow:
+		inset 3px 3px 7px var(--neo-shadow-a),
+		inset -3px -3px 7px var(--neo-light-a);
+}
+.neo-inset-lg {
+	background: var(--neo-bg);
+	box-shadow:
+		inset 10px 10px 22px var(--neo-shadow-a),
+		inset -10px -10px 22px var(--neo-light-a);
+}
+
+/* Toggle/press state: raised → inset on click */
+.neo-press:active {
+	box-shadow:
+		inset 4px 4px 10px var(--neo-shadow-a),
+		inset -4px -4px 10px var(--neo-light-a);
+	transform: translateY(1px);
+}
+
+/* Outlined secondary button */
+.btn-outline {
+	background: var(--neo-bg);
+	color: var(--ink);
+	border: 1.5px solid rgba(26,26,26,0.5);
+	box-shadow:
+		3px 3px 8px var(--neo-shadow-a),
+		-3px -3px 8px var(--neo-light-a);
+	transition: transform .2s, box-shadow .25s, background .2s;
+}
+.dark .btn-outline {
+	color: #F1E8D5;
+	border-color: rgba(241,232,213,0.5);
+}
+.btn-outline:hover {
+	background: #1A1A1A;
+	color: #F1E8D5;
+	transform: translateY(-1px);
+}
+.dark .btn-outline:hover {
+	background: #F1E8D5;
+	color: #1A1A1A;
+}
+.btn-outline:active {
+	transform: translateY(1px);
+	box-shadow:
+		inset 3px 3px 8px rgba(0,0,0,0.25);
+}
+
+/* Solid dark CTA. The primary button style. */
+.solid-cta {
+	background: #1A1A1A;
+	color: #F1E8D5;
+	box-shadow:
+		0 12px 26px -8px rgba(0,0,0,0.35),
+		8px 8px 20px var(--neo-shadow-a),
+		-8px -8px 20px var(--neo-light-a);
+	transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+}
+.dark .solid-cta {
+	background: #F1E8D5;
+	color: #1A1A1A;
+}
+.solid-cta:hover {
+	transform: translateY(-2px);
+	box-shadow:
+		0 18px 34px -8px rgba(0,0,0,0.42),
+		12px 12px 28px var(--neo-shadow-a),
+		-12px -12px 28px var(--neo-light-a);
+}
+.solid-cta:active {
+	transform: translateY(1px);
+	box-shadow:
+		0 6px 14px -6px rgba(0,0,0,0.4),
+		inset 4px 4px 10px rgba(0,0,0,0.5),
+		inset -4px -4px 10px rgba(255,255,255,0.05);
+}
+
+/* Soft CTA. Bigger highlight, snappier press. */
+.neo-cta {
+	background: var(--neo-bg);
+	color: var(--ink);
+	box-shadow:
+		10px 10px 24px var(--neo-shadow-a),
+		-10px -10px 24px var(--neo-light-a);
+	transition: box-shadow .3s cubic-bezier(.2,.7,.2,1), transform .25s;
+}
+.dark .neo-cta { color: #F1E8D5; }
+.neo-cta:hover {
+	box-shadow:
+		14px 14px 30px var(--neo-shadow-a),
+		-14px -14px 30px var(--neo-light-a);
+}
+.neo-cta:active {
+	box-shadow:
+		inset 6px 6px 14px var(--neo-shadow-a),
+		inset -6px -6px 14px var(--neo-light-a);
+	transform: translateY(1px);
+}
+
+/* Pill (small chip) */
+.neo-pill {
+	display: inline-flex; align-items: center; gap: .4rem;
+	padding: .35rem .75rem; border-radius: 999px;
+	background: var(--neo-bg);
+	box-shadow:
+		inset 2px 2px 4px var(--neo-shadow-a),
+		inset -2px -2px 4px var(--neo-light-a);
+	font-size: .72rem; font-weight: 500; letter-spacing: .04em;
+}
+
+/* Input field, recessed */
+.neo-input {
+	background: var(--neo-bg);
+	box-shadow:
+		inset 4px 4px 10px var(--neo-shadow-a),
+		inset -4px -4px 10px var(--neo-light-a);
+	border: 0;
+	border-radius: 14px;
+	padding: 1rem 1.1rem;
+	transition: box-shadow .3s;
+	color: inherit;
+	width: 100%;
+}
+.neo-input:focus {
+	outline: none;
+	box-shadow:
+		inset 5px 5px 12px var(--neo-shadow-a),
+		inset -5px -5px 12px var(--neo-light-a),
+		0 0 0 2px var(--accent-sky, #2E8FB8);
+}
+.neo-input::placeholder { color: rgba(26,26,26,0.4); }
+.dark .neo-input::placeholder { color: rgba(241,232,213,0.4); }
+
+/* ============================================================
+   Stripe bars (splash)
+   ============================================================ */
+.stripe-bar {
+	position: relative;
+	color: #F1E8D5;
+	letter-spacing: 0.08em;
+	font-weight: 700;
+	/* Neumorphic stripe, colored top, soft shadow below */
+	box-shadow:
+		8px 10px 22px rgba(60, 45, 20, 0.28),
+		inset 0 -3px 0 rgba(0,0,0,0.18),
+		inset 0 2px 0 rgba(255,255,255,0.18);
+}
+
+/* Grain overlay */
+.grain::before {
+	content: '';
+	position: absolute; inset: 0;
+	pointer-events: none;
+	opacity: 0.05;
+	mix-blend-mode: multiply;
+	background-image: radial-gradient(rgba(0,0,0,0.6) 1px, transparent 1px);
+	background-size: 3px 3px;
+}
+
+/* Perspective container for slide-in */
+.scene-3d { perspective: 1600px; transform-style: preserve-3d; }
+
+/* Marquee */
+@keyframes marquee {
+	from { transform: translateX(0); }
+	to   { transform: translateX(-50%); }
+}
+.marquee-track {
+	display: flex; gap: 3rem;
+	animation: marquee 40s linear infinite;
+	width: max-content;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+		scroll-behavior: auto !important;
+	}
+	.marquee-track { animation: none; }
+}
+
+[data-cursor='hover'] { cursor: pointer; }
+html { scroll-behavior: smooth; }
+
+/* Neumorphic project card hover */
+.card-lift {
+	transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+	will-change: transform;
+}
+.card-lift:hover {
+	transform: translateY(-4px);
+}
+
+.glass {
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Section dividers (soft inset line) */
+.neo-divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--neo-shadow-a), transparent);
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" class="">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="theme-color" content="#F1E8D5" />
+		<meta name="description" content="Anidu Yakubu Khalid. Frontend engineer based in Nigeria, working with Svelte, Next.js, and Three.js." />
+		<meta property="og:title" content="Anidu Yakubu Khalid, Frontend Engineer" />
+		<meta property="og:description" content="Cinematic developer portfolio · Svelte · Three.js · GSAP" />
+		<meta property="og:type" content="website" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+		/>
+		<title>Anidu Yakubu Khalid · Frontend Engineer</title>
+		<script>
+			// Theme bootstrap. Runs before paint to avoid a flash.
+			try {
+				const stored = localStorage.getItem('ayk-theme');
+				const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const theme = stored || (sysDark ? 'dark' : 'light');
+				if (theme === 'dark') document.documentElement.classList.add('dark');
+			} catch (_) {}
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" class="antialiased">
+		<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-ink-900 focus:text-cream-50 focus:rounded">Skip to content</a>
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

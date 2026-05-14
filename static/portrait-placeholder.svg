@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+	<defs>
+		<linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#3a3d45"/>
+			<stop offset="100%" stop-color="#15161A"/>
+		</linearGradient>
+	</defs>
+	<rect width="600" height="800" fill="url(#g)"/>
+	<circle cx="300" cy="320" r="110" fill="#5a5d65"/>
+	<rect x="170" y="450" width="260" height="350" rx="120" fill="#5a5d65"/>
+	<text x="300" y="760" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#FBF6EC" letter-spacing="4">PLACE PHOTO AT /static/portrait.jpg</text>
+</svg>
