@@ -1,190 +1,171 @@
-# Anidu Yakubu Khalid — Portfolio
+# My portfolio
 
-A cinematic developer portfolio built with **SvelteKit · Three.js · GSAP-grade motion**.
-Submission for HNG Stage 5b (Frontend Wizards).
+This is the portfolio I built for HNG 2026 Stage 5b. It's a SvelteKit site with a splash
+entry screen, a Three.js hero, and the usual about, work, and contact sections, but
+done in a neumorphic style.
 
-> **Live URL:** _add after deploy_ · **Repo:** https://github.com/AY-Khalid
+It lives at the URL in my submission form (also pinned on my GitHub profile).
 
----
+## What's in here
 
-## What you'll see
+The two halves of the site:
 
-1. **Full-screen splash** matching the reference brief — vertical `CONNECTING` typography, a
-   half-face B&W portrait composition, accent stripe stack labeling each capability, signature
-   monogram, contact line. Single CTA: **Enter portfolio**.
-2. **3D slide-in transition** — the splash rotates out along Y (perspective 1400px, ~22°) and
-   the main portfolio panel rotates in from the opposite side, blurred → crisp, ~1.1s.
-3. **Three.js hero** — wireframe torus knot + accent icosahedron + drifting particle field with
-   pointer parallax. Theme-aware (recolors on dark/light toggle).
-4. **About · Stack · Projects · Credentials · Contact** — staggered reveals, project filters,
-   case-detail modals, magnetic CTAs, parallax tilt on project cards.
+1. A full-screen splash page that takes its cues from a design poster I love. There's
+   a big "CONNECTING" wordmark, a half-portrait of me, and a stack of coloured stripes
+   labeling what I do.
+2. The main portfolio. You get to it by clicking "Enter portfolio" on the splash. It
+   does a 3D rotate transition so the splash flips out of view and the portfolio flips
+   in.
 
-## Setup
+The portfolio itself has:
+
+- A Three.js hero with a wireframe knot, a floating icosahedron, and a drifting particle
+  field. It reacts to your cursor and re-colors when you flip the theme.
+- An about section, a stack section, a projects section with filtering and a screenshot
+  carousel inside each project's detail modal, certifications, a contact form, and a
+  footer.
+- Light/dark theme toggle. It remembers your choice.
+
+## Getting it running
+
+You need Node 20+ and npm.
 
 ```bash
-# 1. Install
 npm install
-
-# 2. Drop your photo
-#    Add a forward-facing portrait here (jpg or png, square-ish, ≥1200px):
-#       static/portrait.jpg
-#    The splash composition expects a left-half/centered face — same framing as the brief image.
-
-# 3. Run
 npm run dev
-
-# 4. Build for production
-npm run build
-npm run preview
 ```
 
-### Where to put your picture
-- File path: **`static/portrait.jpg`** (lowercase, exact name)
-- Recommended: 1200×1500px or larger, face centered slightly left of frame, plain background
-- It will be auto-grayscale + clipped to the "D" silhouette in the splash
+That starts the dev server at `http://localhost:5173`.
 
----
+To build for production:
 
-## Architecture
+```bash
+npm run build
+```
+
+Output goes to `build/`. The adapter is `@sveltejs/adapter-netlify` so this deploys
+straight to Netlify with no extra config.
+
+## Where to put your photo
+
+The splash uses a transparent PNG of me at `static/portrait.png`. If you don't have a
+PNG, drop a JPG with a clean white background at `static/portrait.jpg` and the splash
+will blend the white out automatically using `mix-blend-mode: multiply`.
+
+The image renders as block content with no padding or margin so its edges land directly
+on the cream background.
+
+## Where to put project screenshots
+
+Each project has its own folder under `static/projects/<slug>/`. Drop your images in
+there as `1.png`, `2.png`, etc. The first image becomes the card thumbnail, the rest
+appear in the modal as a swipeable carousel.
+
+```
+static/projects/
+├── docagent/
+│   ├── 1.png      ← thumbnail
+│   └── 2.png
+├── accessible-finance/
+│   └── 1.png
+└── ...
+```
+
+If a project doesn't have a screenshot yet, the card falls back to a clean coloured panel
+with the project's first letter. No broken image icons.
+
+To add a new project, edit `src/lib/projects.ts` and add an entry. The `slug` field has
+to match the folder name in `static/projects/`.
+
+## Project structure
 
 ```
 src/
-├── app.html               # Theme bootstrap (no FOUC), font preload, skip link
-├── app.css                # Design tokens, type, motion primitives, reduced-motion
+├── app.html                Theme bootstrap, fonts, skip link
+├── app.css                 Tailwind base + neumorphism design system
 ├── routes/
-│   ├── +layout.svelte     # Global styles + prerender entry
-│   ├── +layout.ts         # prerender = true, SSR + static export
-│   └── +page.svelte       # Splash ↔ Portfolio choreography (3D slide-in)
+│   ├── +layout.svelte
+│   ├── +layout.ts          prerender = true, SSR + static export
+│   └── +page.svelte        Splash → portfolio handoff
 └── lib/
-    ├── projects.ts        # Curated project + repo data
-    ├── theme.ts           # Persisted dark/light store
-    ├── motion.ts          # reveal / magnetic / tilt Svelte actions + reduced-motion
+    ├── projects.ts         Project data (descriptions, repos, screenshots)
+    ├── theme.ts            Dark/light store with localStorage persistence
+    ├── motion.ts           reveal / magnetic / tilt Svelte actions
     └── components/
-        ├── SplashScreen.svelte     # Entry — image-faithful composition
-        ├── SplashStripes.svelte    # Accent capability bars
-        ├── PortraitMask.svelte     # Half-face clip + gold signature ring
-        ├── ThreeHero.svelte        # WebGL scene (theme-aware, parallax)
-        ├── Header.svelte           # Glass nav + theme toggle
-        ├── Hero.svelte             # Above-the-fold portfolio hero
-        ├── Marquee.svelte          # Capability ticker
-        ├── About / Stack / Projects / Credentials / Contact / Footer
-        └── PortfolioApp.svelte     # Composition of the entered experience
+        ├── SplashScreen.svelte
+        ├── SplashStripes.svelte
+        ├── PortraitMask.svelte
+        ├── ThreeHero.svelte
+        ├── Header.svelte
+        ├── Hero.svelte
+        ├── Marquee.svelte
+        ├── About.svelte
+        ├── Stack.svelte
+        ├── Projects.svelte
+        ├── Credentials.svelte
+        ├── Contact.svelte
+        ├── Footer.svelte
+        └── PortfolioApp.svelte
 ```
 
-### Why SvelteKit + adapter-static
-The portfolio prerenders to static HTML for instant first paint and zero server cost.
-Three.js + GSAP-style motion are dynamic-imported so the splash itself stays lean.
+## A few decisions worth flagging
 
-### Component composition
-- **Actions over wrappers** — `reveal`, `magnetic`, `tilt` are tiny imperative Svelte actions
-  that attach IntersectionObserver / pointer listeners directly to elements. Zero re-renders,
-  zero virtual DOM cost, fully tree-shakeable.
-- **State** — `$state` / `$effect` runes for splash → portfolio handoff; one `theme` store.
-- **Styling** — Tailwind for tokens + layout; component-scoped `<style>` blocks for keyframes
-  and clip-path artistry that don't belong in utility classes.
+**Why SvelteKit.** It was the brief, but it was also the right tool. The site prerenders
+to static HTML so the first paint is instant.
 
----
+**The neumorphism design system.** Everything elevated, recessed, or interactive uses one
+of four utility classes: `.neo-raised`, `.neo-inset`, `.solid-cta`, or `.btn-outline`.
+They use dual-light shadows that re-themes correctly in dark mode.
 
-## Animation decisions
+**Animations.** I used CSS keyframes and a tiny `reveal` action backed by
+IntersectionObserver. No animation library running on every scroll event. The 3D slide-in
+transition between splash and portfolio is pure CSS with `perspective` and `rotateY`.
 
-| Concern | Decision |
-|---|---|
-| Splash exit | CSS `transition` on `transform/opacity/filter` with a 3D rotateY — GPU-only, 60fps. |
-| Portfolio entry | `@keyframes slideIn3D` with `perspective(1400px)` rotateY + blur ramp. |
-| Section reveals | IntersectionObserver action (`reveal`) — fires once, then disconnects. Cheap. |
-| 3D scene | Three.js `requestAnimationFrame` loop, capped DPR at 2, fog at z=22. |
-| Stripe bars | Staggered keyframe `stripeIn` with skew + translate — feels engineered, not generic. |
-| Card hover | `tilt` action — pointer-driven `rotateX/Y` with `preserve-3d`. |
-| Marquee | Pure CSS keyframe (`marquee-track`). No JS, no jank. |
-| Reduced motion | Global override disables all keyframes; Three.js drops particle count + freezes spin. |
+**Three.js bundle.** Three is loaded inside `onMount` so the splash itself ships without
+any of it. The renderer caps device pixel ratio at 2, so retina displays don't get
+murdered by 4x fragment work.
 
----
+**Reduced motion.** Global override disables all keyframes and pauses the Three.js spin
+when `prefers-reduced-motion: reduce` is set.
 
-## Performance
-
-- **Static export** — `@sveltejs/adapter-static`, prerender = true. Deploy to Vercel / Netlify /
-  Cloudflare Pages as a static site.
-- **Code splitting** — `three` and `gsap` are in their own Rollup chunks (see `vite.config.ts`).
-- **Lazy WebGL** — `import('three')` inside `onMount`, so SSR never touches it and the splash
-  ships without the 3D bundle.
-- **DPR clamp** — `renderer.setPixelRatio(Math.min(devicePixelRatio, 2))` — protects retina.
-- **Fonts** — single Google Fonts request with `display=swap`; preconnect already done.
-- **Theme bootstrap** — inline `<script>` in `app.html` sets the `.dark` class _before_ paint
-  using `localStorage` + `prefers-color-scheme`. No FOUC.
-- **Manual chunks** — three.js (~580KB gzipped) is its own chunk so the splash + landing copy
-  paint before WebGL hydrates.
-
----
+**No backend.** The contact form opens the visitor's mail client via `mailto:`. No API
+keys, no rate-limiting service, no leak surface.
 
 ## Accessibility
 
-- Skip-to-content link, semantic landmarks (`header`, `main`, `section`, `footer`, `article`).
-- Visible focus rings via `:focus-visible` with `outline-offset: 3px`.
-- Keyboard: Enter / Space activates the splash CTA; all controls reachable via Tab.
-- Form: associated `<label for>`, `aria-modal` on the case-detail dialog, `role="alert"` for
-  validation errors, `role="status"` for sent confirmation.
-- Color contrast: cream `#FBF6EC` / ink `#0B0B0B` is 19.4:1. Dark mode mirrors at the same
-  ratio. Accent text on stripes uses cream on saturated mid-tones to clear AAA on the dark
-  side (stone uses ink so contrast holds).
-- Reduced motion: respected globally + within the Three.js loop (lower particle count, no spin).
-- All decorative SVGs are `aria-hidden`; image alt on the portrait references the subject.
+- Skip-to-content link at the top
+- Semantic landmarks: header, main, section, footer, article
+- All interactive elements reachable by keyboard
+- Visible focus rings via `:focus-visible`
+- Form fields are labelled, validation errors use `role="alert"`, success state uses `role="status"`
+- The case detail modal uses `aria-modal` and traps body scroll
+- All decorative SVGs are marked `aria-hidden`
 
----
+## Performance
 
-## Theme support
+- Static site export via `adapter-netlify`
+- GSAP is in its own Rollup chunk (see `vite.config.ts`)
+- Three.js is lazy-imported inside `onMount`
+- Fonts are preconnected and loaded with `display=swap`
+- Theme bootstraps in a tiny inline script before paint so there's no flash
+- Images use `loading="lazy"` and `decoding="async"`
 
-- **Dark / light** with persisted preference (`localStorage: ayk-theme`) and
-  `prefers-color-scheme` fallback. Toggle is in the header.
-- Three.js scene re-themes live via a `MutationObserver` on `<html>` class changes — wireframe
-  + particles flip to ink/cream while the accent stays lime.
+## Stack
 
----
+- SvelteKit (Svelte 5 with runes)
+- TypeScript
+- Tailwind CSS
+- Three.js for the hero scene
+- GSAP for some motion bits
+- Adapter: `@sveltejs/adapter-netlify`
 
-## Security & stability
+## Links
 
-- Contact form sanitizes `<>` from inputs and clamps length client-side; submission opens a
-  `mailto:` so no API key is shipped and no backend can leak.
-- All external links use `target="_blank" rel="noopener"`.
-- No secrets, no env vars required to build.
-- Image load failure is handled gracefully (placeholder ink card with the path hint).
-- Modal open locks body scroll and restores on close (no scroll-lock leak).
-
----
-
-## Trade-offs
-
-- **No CMS / MDX for case studies** — the project set is small and stable enough to live in
-  `projects.ts`. Trade: editing requires a redeploy. Worth it for the static + prerender win.
-- **mailto over a serverless email backend** — keeps the site zero-config to deploy and avoids
-  rate-limit/abuse surface. If a contact backend is needed later, swap `submit()` to POST.
-- **Three.js over a shader file** — kept the GLSL inline-friendly with built-in materials so
-  the bundle stays in the 580KB ballpark instead of pulling glslify + raw GLSL.
-- **No router-level animation library** — used native Svelte transitions + actions to keep
-  bundle small. GSAP is reserved for the curtain transition if you want to upgrade later.
-
----
-
-## Deploy
-
-### Vercel
-```bash
-# zero config — `adapter-static` produces `build/`
-npx vercel --prod
-```
-
-### Netlify
-1. Push to GitHub
-2. Connect repo on Netlify
-3. Build command: `npm run build`
-4. Publish directory: `build`
-
-### Cloudflare Pages
-- Framework preset: SvelteKit
-- Build: `npm run build`
-- Output: `build`
-
----
+- Live site: in the submission form
+- My GitHub: https://github.com/AY-Khalid
+- My email: aniduyakubu@gmail.com
+- My LinkedIn: https://www.linkedin.com/in/anidu-yakubu-khalid-ab977821b/
 
 ## License
 
-MIT — content is mine, code is yours to learn from.
+MIT. Use whatever's useful here.
