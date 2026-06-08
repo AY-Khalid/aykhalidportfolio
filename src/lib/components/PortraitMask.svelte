@@ -7,27 +7,30 @@
 </script>
 
 <div class="relative w-full h-full select-none">
-	<!-- Yellow/gold signature ring behind portrait -->
-	<div
-		class="absolute lg:left-[102%] top-1/2 -translate-x-1/2 -translate-y-1/2
-		       w-[70%] aspect-square rounded-full ring-circle z-10"
-		aria-hidden="true"
-	></div>
+	<!-- Yellow/gold signature ring + curving signature text.
+	     Desktop only. On mobile the ring competes with the portrait and the
+	     signature text is too small to read anyway, so we hide the whole group. -->
+	<div class="hidden lg:contents">
+		<div
+			class="absolute lg:left-[102%] top-1/2 -translate-x-1/2 -translate-y-1/2
+			       w-[70%] aspect-square rounded-full ring-circle z-10"
+			aria-hidden="true"
+		></div>
 
-	<!-- Vertical signature label on the ring -->
-	<div
-		class="absolute lg:left-[102%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] aspect-square
-		       pointer-events-none z-10"
-		aria-hidden="true"
-	>
-		<svg viewBox="0 0 200 200" class="w-full h-full">
-			<defs>
-				<path id="signring" d="M 100,100 m -86,0 a 86,86 0 1,1 172,0 a 86,86 0 1,1 -172,0" />
-			</defs>
-			<text class="signature-text" font-family="Inter, sans-serif" font-size="6" letter-spacing="3" fill="#1F2126">
-				<textPath href="#signring" startOffset="14%">A N I D U  ·  Y A K U B U  ·  K H A L I D  ·  F R O N T E N D  E N G I N E E R  ·</textPath>
-			</text>
-		</svg>
+		<div
+			class="absolute lg:left-[102%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] aspect-square
+			       pointer-events-none z-10"
+			aria-hidden="true"
+		>
+			<svg viewBox="0 0 200 200" class="w-full h-full">
+				<defs>
+					<path id="signring" d="M 100,100 m -86,0 a 86,86 0 1,1 172,0 a 86,86 0 1,1 -172,0" />
+				</defs>
+				<text class="signature-text" font-family="Inter, sans-serif" font-size="6" letter-spacing="3" fill="#1F2126">
+					<textPath href="#signring" startOffset="14%">A N I D U  ·  Y A K U B U  ·  K H A L I D  ·  F R O N T E N D  E N G I N E E R  ·</textPath>
+				</text>
+			</svg>
+		</div>
 	</div>
 
 	<!-- "D"-shaped portrait clip -->
